@@ -7,6 +7,6 @@ const teamSchema = mongoose.Schema({
     country: String,
 });
 
-const Team = mongoose.model("Teams", teamSchema);
+const Team = mongoose.model("Team", teamSchema);
 
 module.exports = Team;

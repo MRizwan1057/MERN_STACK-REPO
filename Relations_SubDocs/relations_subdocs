@@ -1,0 +1,28 @@
+let teacher = {
+    id: "1",
+    name: "Rizwan",
+    designation: "Senior"
+
+};
+
+let student = {
+    name: "Usman",
+    subjects: ["Java", "Dart", "JS"],
+    teacher: {
+        name: "Rizwan",
+        designation: "Senior"
+    },
+};
+let student2 = {
+    name: "Naeem",
+    subjects: ["Eng", "Urdu", "Arabic"],
+    teacher: {
+        name: "Rizwan",
+        designation: "Senior"
+    },
+};
+let student3 = {
+    name: "Hafeez",
+    subjects: ["Science", "Physics", "Chemistry"],
+    teacher: "1",
+};
