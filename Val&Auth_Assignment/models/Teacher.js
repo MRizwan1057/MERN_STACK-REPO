@@ -10,7 +10,7 @@ var schema = mongoose.Schema({
 });
 schema.statics.validateTeacher = (data) => {
     const joischema = Joi.object({
-        name: Joi.string().min(3).max(10),
+        name: Joi.string().min(3).max(20),
         email: Joi.string().min(5).max(50),
         password: Joi.string().min(5).max(50),
         age: Joi.number().min(0),

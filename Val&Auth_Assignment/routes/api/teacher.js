@@ -5,13 +5,18 @@ const Teacher = require("../../models/Teacher");
 
 const _ = require("lodash");
 const bcrypt = require("bcryptjs");
-const { validateTeacher } = require("../../models/Teacher");
+
+const jwt = require("jsonwebtoken");
+const config = require("config");
+// const { validateTeacher } = require("../../models/Teacher");
 
 //*****Sign Up******
 
 router.get("/signup", async(req, res) => {
     try {
-        let result = new Teacher();
+        let result = await Teacher.findOne({ email: req.body.email })
+        if (result) return res.status(400).send("Teacher with given email already exist.");
+        result = new Teacher();
         result.name = req.body.name;
         result.age = req.body.age;
         result.email = req.body.email;
@@ -20,9 +25,9 @@ router.get("/signup", async(req, res) => {
         result.password = await bcrypt.hash(req.body.password, salt);
         result = await result.save();
         result = _.pick(result, ["_id", "name", "age", "email", "designation"]);
-        res.send(result);
+        return res.send(result);
     } catch (err) {
-        res.status(401).send(err.message);
+        return res.status(401).send(err.message);
     }
 });
 
@@ -36,23 +41,25 @@ router.get("/signin", async(req, res) => {
 
         let result = await Teacher.findOne({ email: email });
         if (!result) {
-            res.status(404).send("Teacher with given email was not found");
+            return res.status(404).send("Teacher with given email was not found");
         }
 
         let isValid = await bcrypt.compare(password, result.password);
         if (!isValid) {
-            res.status(404).send("Invalid Password");
+            return res.status(404).send("Invalid Password");
         }
 
         result = _.pick(result, ["name", "email", "_id", "designation", "age"]);
         // console.log(await _.omit(result, ["password"]));
 
         // res.send(result);
-        res.send("Logged in Successfully");
-        console.log("Logged in Successfully");
+        let token = jwt.sign({ "name": "result.name", "email": "result.email" }, config.get("jwtpvtkey"));
+
+        return res.send(token);
+        // console.log("Logged in Successfully");
 
     } catch (err) {
-        res.status(401).send(err.message);
+        return res.status(401).send(err.message);
     }
 });
 
@@ -74,20 +81,20 @@ router.get("/", async function(req, res) {
         return res.send(result);
     } catch (err) {
         console.log(err);
-        res.status(400).send(err.message);
+        return res.status(400).send(err.message);
     }
 });
 router.get("/:id", async function(req, res) {
     try {
         let result = await Teacher.findById(req.params.id);
         if (!result) {
-            res.status(400).send("Teacher with given ID not found");
+            return res.status(400).send("Teacher with given ID not found");
         }
         return res.send(result);
     } catch (err) {
         console.log(err);
         // res.status(400).send(err.message);
-        res.status(400).send("The format of id is not correct");
+        return res.status(400).send("The format of id is not correct");
     }
 });
 // router.post("/", async function(req, res) {
@@ -109,7 +116,7 @@ router.put("/:id", async function(req, res) {
     try {
         let result = await Teacher.findById(req.params.id);
         if (!result) {
-            res.status(400).send("The record with given id was not found");
+            return res.status(400).send("The record with given id was not found");
         }
 
         //Another way to do this
@@ -132,13 +139,13 @@ router.delete("/:id", async function(req, res) {
     try {
         let result = await Teacher.findById(req.params.id);
         if (!result) {
-            res.status(400).send("record with given ID not found");
+            return res.status(400).send("record with given ID not found");
         }
         result = await Teacher.findByIdAndDelete(req.params.id);
         return res.send(result);
     } catch (err) {
         console.log(err);
-        res.status(400).send(err.message);
+        return res.status(400).send(err.message);
         // res.status(400).send("The format of id is not correct");
     }
 });
