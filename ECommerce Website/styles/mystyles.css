@@ -1,0 +1,38 @@
+/* .col-sm-6 {
+    margin: 5px;
+    padding: 5px;
+} */
+
+.fIcons {
+    margin: 50px;
+    padding-left: 50px;
+    justify-content: space-around;
+}
+
+.checked {
+    color: orange;
+}
+
+.myfooter {
+    height: 160px;
+    background-color: #80f122;
+    /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right top, #15e6ca, rgb(248, 128, 47));
+}
+
+.myjumbo {
+    height: 160px;
+    background-color: #e93b0f;
+    /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom left, #f05f0c, rgb(133, 34, 111));
+}
+
+img {
+    height: 200px;
+}
+
+.card {
+    width: 300px;
+    margin-top: 22px;
+    border-radius: 3px;
+}
