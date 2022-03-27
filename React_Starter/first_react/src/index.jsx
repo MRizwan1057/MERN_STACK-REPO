@@ -11,19 +11,29 @@ import ReactDom from "react-dom";
 
 
 
-ReactDom.render( <> <h1> Top 10 Favorites Cricketers </h1>
-<ol>
- <li>Imran Nazir</li> 
- <li>Shoaib Malik</li> 
- <li>Shahid Afridi</li> 
- <li>M Amir</li> 
- <li>Q De Kock</li> 
- <li>AB Devilliers</li> 
- <li>MS Dhoni</li> 
- <li>Virat Kohli</li> 
- <li>Pat Cummins</li> 
- <li>Chris Woakes</li> 
- </ol>
-  </> , document.getElementById("root"));
+// ReactDom.render( <> <h1> Top 10 Favorites Cricketers </h1>
+// <ol>
+//  <li>Imran Nazir</li> 
+//  <li>Shoaib Malik</li> 
+//  <li>Shahid Afridi</li> 
+//  <li>M Amir</li> 
+//  <li>Q De Kock</li> 
+//  <li>AB Devilliers</li> 
+//  <li>MS Dhoni</li> 
+//  <li>Virat Kohli</li> 
+//  <li>Pat Cummins</li> 
+//  <li>Chris Woakes</li> 
+//  </ol>
+//   </> , document.getElementById("root"));
 
+// usage of constants in jsx
 
+const name = "Rizwan";
+
+const designation = "Developer";
+
+const dob =" 17-07-1999";
+
+// we can use template literals(`${variable name}`) inside html
+
+ReactDom.render( <> <h1> {`My name is ${name} and I my date of birth is ${dob}`} </h1> <h2>I am a Professional {designation}</h2> <h4>My Lucky number is {Math.random(11)+1}</h4> </> , document.getElementById("root"));
