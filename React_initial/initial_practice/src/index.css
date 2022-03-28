@@ -1,0 +1,19 @@
+.nameHeading {
+    margin: 42px;
+    color: blue;
+    text-transform: capitalize;
+    font-size: 33px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.dateDiv {
+    text-align: center;
+    background-color: aquamarine;
+    text-shadow: 1.2rem;
+}
+
+.greeting {
+    text-align: center;
+    font-size: 26px;
+}
