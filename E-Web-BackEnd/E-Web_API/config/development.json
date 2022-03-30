@@ -1,0 +1,4 @@
+{
+    "db": "mongodb://localhost/EstoreDB",
+    "jwtprivatekey": "This is my private key"
+}
