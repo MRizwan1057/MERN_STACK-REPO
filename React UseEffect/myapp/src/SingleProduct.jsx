@@ -12,6 +12,7 @@ import { Grid } from "@material-ui/core";
 const SingleProduct = ({ product }) => {
   const useStyles = makeStyles({
     root: {
+      background: "burlywood",
       maxWidth: 300,
       padding: 5,
       margin: 15,
