@@ -1,4 +1,4 @@
 {
-    "db": "mongodb+srv://Rizwan:rizwan@estorecluster.dhnhh.mongodb.net/test",
+    "db": "mongodb+srv://Rizwan:rizwan@estorecluster.tq9zj.mongodb.net/test",
     "jwtprivatekey": "This is my private key"
 }
