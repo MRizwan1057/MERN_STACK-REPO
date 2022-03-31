@@ -9,9 +9,6 @@ var userSchema = mongoose.Schema({
         type: String,
         uppercase: true,
         required: true,
-        get: function(name) {
-            return "s";
-        },
     },
     email: {
         type: String,
@@ -24,15 +21,15 @@ var userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        default: "admin",
+        default: "normal",
         required: true,
     }, //admin,normal
-    tokens: [{
-        token: {
-            type: String,
-            required: true,
-        },
-    }, ],
+    // tokens: [{
+    //     token: {
+    //         type: String,
+    //         required: true,
+    //     },
+    // }, ],
 });
 
 userSchema.statics.validateUser = (data) => {
@@ -49,17 +46,17 @@ userSchema.methods.generatePasswordHash = async function(password) {
     this.password = await bcrypt.hash(password, salt);
 };
 
-userSchema.methods.generateToken = async function() {
-    try {
-        let privateKey = config.get("jwtprivatekey");
-        let token = jwt.sign({ _id: this._id, name: this.name }, privateKey);
-        this.tokens = this.tokens.concat({ token: token });
-        await this.save();
-        return token;
-    } catch (err) {
-        console.log(err);
-    }
-};
+// userSchema.methods.generateToken = async function() {
+//     try {
+//         let privateKey = config.get("jwtprivatekey");
+//         let token = jwt.sign({ _id: this._id, name: this.name }, privateKey);
+//         // this.tokens = this.tokens.concat({ token: token });
+//         // await this.save();
+//         // return token;
+//     } catch (err) {
+//         console.log(err);
+//     }
+// };
 
 const User = mongoose.model("User", userSchema);
 

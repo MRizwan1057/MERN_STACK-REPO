@@ -1,4 +1,4 @@
 {
-    "db": "mongodb://localhost/EstoreDB",
+    "db": "mongodb+srv://Rizwan:rizwan@estorecluster.dhnhh.mongodb.net/test",
     "jwtprivatekey": "This is my private key"
 }

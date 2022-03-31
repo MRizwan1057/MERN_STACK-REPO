@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// To allow localhost to run 
+// To allow localhost to run
 
 var cors = require("cors");
 var corsOptions = {
@@ -36,21 +36,11 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 
-
-
-
 //routes
 // app.use("/", validateProduct, indexRouter);
 app.use("/", indexRouter);
 app.use("/api/products", validateProduct, productsRouter);
 app.use("/api/users", userRouter);
-
-
-
-
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -69,9 +59,9 @@ app.use(function(err, req, res, next) {
     res.render("error");
 });
 
-// const db = config.get("db");
+const db = config.get("db");
 mongoose
-    .connect("mongodb://localhost/EstoreDB")
+    .connect(db)
     .then(async(data) => {
         console.log("DB connected");
     })
