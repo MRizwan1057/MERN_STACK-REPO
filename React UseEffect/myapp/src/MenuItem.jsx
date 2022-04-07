@@ -27,9 +27,9 @@ const MenuItem = (props) => {
           <Link to="/login" className={classes.menuItem}>
             <Typography variant="h6">Login</Typography>
           </Link>
-          <Link to="/not-found" className={classes.menuItem}>
+          {/* <Link to="/not-found" className={classes.menuItem}>
             <Typography variant="h6">Not Found</Typography>
-          </Link>
+          </Link> */}
           {/* <Typography variant="h6">News</Typography> */}
         </Toolbar>
       </AppBar>

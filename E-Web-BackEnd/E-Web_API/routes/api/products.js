@@ -3,7 +3,10 @@ var router = express.Router();
 const Product = require("../../models/Product");
 const auth = require("../../middlewares/auth");
 const isadmin = require("../../middlewares/isadmin");
+const upload = require("../../middlewares/upload");
 const { sortedLastIndex } = require("lodash");
+const multer = require("multer");
+
 // const { validateProduct } = require("../../models/Product");
 
 //getAll route
@@ -30,6 +33,7 @@ router.get("/", async function(req, res) {
 
 router.get("/:id", async function(req, res) {
     try {
+        Product.deleteMany();
         let result = await Product.findById(req.params.id);
         if (!result) {
             return res.status(400).send("Product with given ID not found");
@@ -41,7 +45,9 @@ router.get("/:id", async function(req, res) {
         return res.status(400).send("The format of id is not correct");
     }
 });
-router.post("/", auth, isadmin, async function(req, res) {
+
+//will be authorized later  auth, isadmin,
+router.post("/", upload.single("pimg"), async function(req, res) {
     try {
         // console.log(` the secret key is: ${req.cookies.jwtoken}`);
         let result = await Product.findOne({
@@ -54,6 +60,11 @@ router.post("/", auth, isadmin, async function(req, res) {
         result.name = req.body.name;
         result.price = req.body.price;
         result.soldQty = req.body.soldQty;
+
+        if (req.file) {
+            result.pimg = req.file.path;
+        }
+
         result = await result.save();
         return res.status(200).send(result);
         console.log(result);

@@ -12,6 +12,7 @@ var userRouter = require("./routes/api/user");
 var validateProduct = require("./middlewares/validateProduct");
 
 var app = express();
+app.use("/images", express.static("images"));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

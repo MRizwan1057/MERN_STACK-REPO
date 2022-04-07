@@ -1,4 +1,5 @@
 import MenuItem from "./MenuItem";
+import Footer from "./Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import Products from "./Products";
@@ -19,23 +20,24 @@ function App() {
         <
         Route path = "/"
         exact component = { Home }
-        /> <
+        />{" "} <
         Route path = "/products"
         component = { Products }
-        /> <
+        />{" "} <
         Route path = "/contact-us"
         component = { Signup }
-        /> <
+        />{" "} <
         Route path = "/login"
         component = { Login }
-        /> <
+        />{" "} <
         Route path = "/not-found"
         component = { NotFound }
-        /> <
+        />{" "} <
         Redirect to = "/not-found" / >
         <
-        /Switch> <
-        /div> <
+        /Switch>{" "} <
+        Footer / > { " " } <
+        /div>{" "} <
         /Router>
     );
 }

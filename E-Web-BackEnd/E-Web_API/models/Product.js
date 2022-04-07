@@ -5,15 +5,18 @@ var productSchema = mongoose.Schema({
     name: {
         type: String,
         uppercase: true,
-        required: true
+        required: true,
     },
     price: {
         type: Number,
-        required: true
+        required: true,
     },
     soldQty: {
         type: Number,
-        required: true
+        required: true,
+    },
+    pimg: {
+        type: String,
     },
 });
 productSchema.statics.validateProduct = (data) => {
