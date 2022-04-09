@@ -21,7 +21,7 @@ const MenuItem = (props) => {
           <Link to="/products" className={classes.menuItem}>
             <Typography variant="h6">Products</Typography>
           </Link>
-          <Link to="/contact-us" className={classes.menuItem}>
+          <Link to="/signup" className={classes.menuItem}>
             <Typography variant="h6">Signup</Typography>
           </Link>
           <Link to="/login" className={classes.menuItem}>

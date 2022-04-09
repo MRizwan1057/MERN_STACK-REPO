@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
+import userService from "./services/UserService";
+// import userService from "./services/UserService";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "75ch",
+      // width: "50ch",
       color: "green",
     },
   },
@@ -32,24 +34,37 @@ const Signup = (props) => {
   };
 
   const handleClick = () => {
-    alert("clicked");
-    setUserReg({
-      username: "sss",
-      useremail: "sss",
-      userpswd: "sss",
-    });
-    // <div>
-    //   {records.map((currentElement) => {
-    //     return (
-    //       <div>
-    //         <p>{currentElement.username}</p>
-    //         <p>{currentElement.useremail}</p>
-    //         <p>{currentElement.userpswd}</p>
-    //       </div>
-    //     );
-    //   })}
-    // </div>;
+    userService
+      .registerUser({
+        name: userReg.username,
+        email: userReg.useremail,
+        password: userReg.userpswd,
+      })
+      .then((res) => {
+        console.log(res.data);
+        props.history.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  // setUserReg({
+  //   username: "sss",
+  //   useremail: "sss",
+  //   userpswd: "sss",
+  // });
+  // <div>
+  //   {records.map((currentElement) => {
+  //     return (
+  //       <div>
+  //         <p>{currentElement.username}</p>
+  //         <p>{currentElement.useremail}</p>
+  //         <p>{currentElement.userpswd}</p>
+  //       </div>
+  //     );
+  //   })}
+  // </div>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,56 +81,58 @@ const Signup = (props) => {
 
   return (
     <>
-      <form
-        action=""
-        onSubmit={handleSubmit}
-        className={classes.root}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField
-          id="username"
-          name="username"
-          value={userReg.username}
-          onChange={handleInput}
-          label="Write Name"
-          color="secondary"
-          variant="filled"
-        />
-        <br />
-        <TextField
-          id="useremail"
-          name="useremail"
-          value={userReg.useremail}
-          onChange={handleInput}
-          label="Enter Email"
-          color="secondary"
-          type="email"
-          variant="filled"
-        />
-        <br />
-        <TextField
-          id="userpswd"
-          name="userpswd"
-          value={userReg.userpswd}
-          onChange={handleInput}
-          label="Type Password"
-          color="secondary"
-          type="password"
-          variant="filled"
-        />
-        <br />
-        <Button variant="contained" onClick={handleClick}>
-          Register
-        </Button>
-      </form>
+      <Grid container spacing={3}>
+        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
+          {" "}
+          <form action="" onSubmit={handleSubmit} className={classes.root}>
+            <TextField
+              id="username"
+              name="username"
+              value={userReg.username}
+              onChange={handleInput}
+              label="Write Name"
+              color="secondary"
+              variant="filled"
+              fullWidth
+            />
+            <br />
+            <TextField
+              id="useremail"
+              name="useremail"
+              value={userReg.useremail}
+              onChange={handleInput}
+              label="Enter Email"
+              color="secondary"
+              type="email"
+              variant="filled"
+              fullWidth
+            />
+            <br />
+            <TextField
+              id="userpswd"
+              name="userpswd"
+              value={userReg.userpswd}
+              onChange={handleInput}
+              label="Type Password"
+              color="secondary"
+              type="password"
+              variant="filled"
+              fullWidth
+            />
+            <br />
+            <Button variant="contained" fullWidth onClick={handleClick}>
+              Register
+            </Button>
+          </form>
+        </Grid>
+        <Grid item xs={4}></Grid>
+      </Grid>
 
       <div>
         {records.map((currentElement) => {
           return (
             <div>
-              <h5>hello</h5>
-
               <p>{currentElement.username}</p>
               <p>{currentElement.useremail}</p>
               <p>{currentElement.userpswd}</p>

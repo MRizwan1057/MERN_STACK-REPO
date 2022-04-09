@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import SingleProduct from "./SingleProduct";
-import axios from "axios";
+import productService from "./services/ProductService";
 import { Grid } from "@material-ui/core";
 const Products = (props) => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
   console.log("Component rendered");
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/products")
+    productService
+      .getAllProducts()
       .then((res) => {
-        setProducts(res.data);
-        // console.log(res.data);
+        setProducts(res);
       })
       .catch((err) => {
-        setError(true);
         console.log(err);
       });
   }, []);

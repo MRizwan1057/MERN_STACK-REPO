@@ -20,24 +20,24 @@ function App() {
         <
         Route path = "/"
         exact component = { Home }
-        />{" "} <
+        /> <
         Route path = "/products"
         component = { Products }
-        />{" "} <
-        Route path = "/contact-us"
+        /> <
+        Route path = "/signup"
         component = { Signup }
-        />{" "} <
+        /> <
         Route path = "/login"
         component = { Login }
-        />{" "} <
+        /> <
         Route path = "/not-found"
         component = { NotFound }
-        />{" "} <
+        /> <
         Redirect to = "/not-found" / >
         <
-        /Switch>{" "} <
+        /Switch> <
         Footer / > { " " } <
-        /div>{" "} <
+        /div> <
         /Router>
     );
 }

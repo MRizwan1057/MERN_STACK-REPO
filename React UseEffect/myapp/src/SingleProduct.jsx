@@ -26,9 +26,8 @@ const SingleProduct = ({ product }) => {
           component="img"
           alt="product image"
           height="300"
-          // image={product.pimg}
-          // image="https://picsum.photos/200/300"
-          src="/images/usb.png"
+          width="200"
+          image={product.pimg}
           title="My Product"
         />
         <CardContent style={{ textAlign: "center" }}>
