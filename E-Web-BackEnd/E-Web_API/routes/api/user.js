@@ -9,6 +9,9 @@ const _ = require("lodash");
 router.post("/signup", async(req, res) => {
     try {
         let result = await User.findOne({ email: req.body.email });
+        if (result === null && result === "") {
+            return res.status(400).send("Can't be Empty, This is Required.");
+        }
         if (result)
             return res.status(400).send("User with given email already exist.");
         result = new User();
@@ -28,12 +31,17 @@ router.post("/signup", async(req, res) => {
     }
 });
 
-router.post("/signin", async(req, res) => {
+router.post("/login", async(req, res) => {
     try {
         let { email, password } = req.body;
         let result = await User.findOne({ email: email });
+        // if (result === null && result === "") {
+        //     return res.status(400).send("Can't be Empty, This is Required.");
+        // }
         if (!result) {
-            return res.status(404).send("User with given email was not found");
+            return res
+                .status(404)
+                .send("User with given email was not found. Please Sign in first.");
         }
 
         let isValid = await bcrypt.compare(password, result.password);
@@ -43,7 +51,9 @@ router.post("/signin", async(req, res) => {
 
         //JWT
         let privateKey = config.get("jwtprivatekey");
-        let token = jwt.sign({ _id: result._id, name: result.name }, privateKey);
+        let token = jwt.sign({ _id: result._id, name: result.name, role: result.role },
+            privateKey
+        );
         // result = _.pick(result, ["name", "email", "role", "_id"]);
         // console.log(await _.omit(result, ["password"]));
 

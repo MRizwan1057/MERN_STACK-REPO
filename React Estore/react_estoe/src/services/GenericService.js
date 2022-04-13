@@ -1,5 +1,6 @@
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:8080/api/";
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("jwt");
 class GenericService {
     constructor() {}
 

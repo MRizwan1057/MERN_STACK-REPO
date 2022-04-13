@@ -8,8 +8,10 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
+import { withRouter } from "react-router";
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = (props) => {
+  let { product } = props;
   const useStyles = makeStyles({
     root: {
       background: "burlywood",
@@ -31,19 +33,26 @@ const SingleProduct = ({ product }) => {
           title="My Product"
         />
         <CardContent style={{ textAlign: "center" }}>
-          <Typography gutterBottom variant="h5" component="h5">
+          <Typography gutterBottom variant="h5">
             {product.name}
           </Typography>
-          <Typography gutterBottom variant="h6" component="h6">
+          <Typography gutterBottom variant="h6">
             {product.price} PKR
           </Typography>
-          <Typography gutterBottom variant="h6" component="h6">
+          <Typography gutterBottom variant="h6">
             {product.soldQty} Sold
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            console.log(`veiwed${product._id}`);
+            props.history.push("/detailedProduct" + product._id);
+          }}
+        >
           View Product
         </Button>
         <Button variant="contained" color="secondary">
@@ -53,16 +62,4 @@ const SingleProduct = ({ product }) => {
     </Grid>
   );
 };
-
-// <div>
-//   <img src="{product.pimg}">
-//   <h3>{product.name}</h3>
-//   <h4>{product.price}</h4>
-//   <h5>{product.soldQty}</h5>
-//   <button>View Product</button>
-//   <button>Add to Cart</button>
-// </div>
-//   );
-// };
-
-export default SingleProduct;
+export default withRouter(SingleProduct);
