@@ -9,7 +9,7 @@ const Login = (props) => {
     userService
       .login(email, password)
       .then((res) => {
-        toast.success("Login Successful");
+        toast.success("You are Logged in.");
         props.history.push("/normalUser");
 
         // {userService.isAdmin() ? {props.history.push("/normalUser");}:{props.history.push("/adminUser");};
