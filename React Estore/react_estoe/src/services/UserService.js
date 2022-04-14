@@ -46,6 +46,7 @@ class UserService extends GenericService {
     };
     isAdmin = () => {
         let user = this.getUser();
+        console.log(user);
         if (user && user.role === "admin") return true;
         return false;
     };

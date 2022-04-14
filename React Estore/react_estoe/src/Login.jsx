@@ -3,16 +3,18 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import userService from "./services/UserService";
 const Login = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@gmail.com");
+  const [password, setPassword] = useState("admin");
   const handleLogin = () => {
     userService
       .login(email, password)
       .then((res) => {
         toast.success("You are Logged in.");
-        props.history.push("/normalUser");
+        // props.history.push("/normalUser");
 
-        // {userService.isAdmin() ? {props.history.push("/normalUser");}:{props.history.push("/adminUser");};
+        userService.isAdmin()
+          ? props.history.push("/adminUser")
+          : props.history.push("/normalUser");
         window.location.reload();
 
         // console.log(res);
