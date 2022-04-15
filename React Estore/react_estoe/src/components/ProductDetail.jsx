@@ -26,7 +26,6 @@ const ProductDetail = ({ product }) => {
         <Grid item xs={4} className={classes.root}>
           <CardActionArea>
             <CardMedia
-              // variant="outlined"
               component="img"
               alt="product image"
               height="250"

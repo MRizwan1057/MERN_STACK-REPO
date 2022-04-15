@@ -2,7 +2,7 @@ import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import userService from "./services/UserService";
+import userService from "../services/UserService";
 const MenuItem = (props) => {
   const useStyles = makeStyles((theme) => ({
     menuItem: {
@@ -22,12 +22,6 @@ const MenuItem = (props) => {
           <Link to="/products" className={classes.menuItem}>
             <Typography variant="h6">Products</Typography>
           </Link>
-          {/* <Link to="/signup" className={classes.menuItem}>
-            <Typography variant="h6">Signup</Typography>
-          </Link>
-          <Link to="/login" className={classes.menuItem}>
-            <Typography variant="h6">Login</Typography>
-          </Link> */}
 
           {!userService.isUserLoggedIn() ? (
             <>

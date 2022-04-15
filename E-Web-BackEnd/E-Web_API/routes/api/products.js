@@ -14,15 +14,15 @@ const multer = require("multer");
 router.get("/", async function(req, res) {
     try {
         // console.log(req.query);
-        let page = Number(req.query.page);
-        let perPage = Number(req.query.perPage);
+        let page = Number(req.query.page ? req.query.page : 1);
+        let perPage = Number(req.query.perPage ? req.query.perPage : 10);
 
         page = (page - 1) * perPage;
         // console.log(page, perPage);
 
         let result = await Product.find(req.body).skip(page).limit(perPage);
-
-        return res.send(result);
+        let total = await Product.countDocuments();
+        res.send({ result, total });
     } catch (err) {
         console.log(err);
         return res.status(400).send(err.message);

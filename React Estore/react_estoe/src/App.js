@@ -1,19 +1,19 @@
-import MenuItem from "./MenuItem";
-import Footer from "./Footer";
+import MenuItem from "./components/MenuItem";
+import Footer from "./components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./Home";
-import Products from "./Products";
-import Signup from "./Signup";
-import Login from "./Login";
+import Home from "./components/Home";
+import Products from "./components/Products";
+import Signup from "./auth/Signup";
+import Login from "./auth/Login";
 import { Redirect } from "react-router-dom";
-import NotFound from "./NotFound";
-import AddProduct from "./AddProduct";
-import ProductDetail from "./ProductDetail";
-import Updateproduct from "./Update&singleProduct";
+import NotFound from "./components/NotFound";
+import AddProduct from "./components/AddProduct";
+import ProductDetail from "./components/ProductDetail";
+import Updateproduct from "./components/Update&singleProduct";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import NormalUser from "./NormalUserDash";
-import AdminUser from "./AdminUser";
+import NormalUser from "./components/NormalUserDash";
+import AdminUser from "./components/AdminUser";
 
 function App() {
     return ( <
@@ -29,10 +29,7 @@ function App() {
         <
         Route path = "/"
         exact component = { Home }
-        />{" "} <
-        Route path = "/products"
-        exact component = { Products }
-        />{" "} <
+        /> <
         Route path = "/signup"
         component = { Signup }
         />{" "} <
@@ -48,9 +45,12 @@ function App() {
         Route path = "/detailedProduct"
         component = { ProductDetail }
         />{" "} <
+        Route path = "/products/:page?"
+        component = { Products }
+        />{" "} <
         Route path = "/normalUser"
         component = { NormalUser }
-        /> <
+        />{" "} <
         Route path = "/adminUser"
         component = { AdminUser }
         />{" "} <

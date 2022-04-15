@@ -5,8 +5,8 @@ class ProductService extends GenericService {
         super();
     }
 
-    getAllProducts = () => {
-        return this.get("products");
+    getAllProducts = (page = 1, perPage = 10) => {
+        return this.get("products?page=" + page + "&perPage=" + perPage);
     };
     deleteProduct = (id) => {
         return this.delete("products/" + id);

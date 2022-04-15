@@ -1,7 +1,7 @@
 import { Button, Grid, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import userService from "./services/UserService";
+import userService from "../services/UserService";
 const Signup = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

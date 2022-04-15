@@ -1,17 +1,27 @@
 import { Button, Grid, TextField } from "@material-ui/core";
-import React, { useState } from "react";
-import productService from "./services/ProductService";
-const AddProduct = (props) => {
+// import * as MUI from "@material-ui/core";
+
+import React, { useEffect, useState } from "react";
+import productService from "../services/ProductService";
+const Updateproduct = (props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [soldQty, setsoldQty] = useState(0);
-
-  // post request of axios
-  const addProductClick = () => {
+  const id = props.match.params.id;
+  useEffect(() => {
     productService
-      .createProduct({ name, price, soldQty })
+      .getSingleProduct(id)
       .then((res) => {
-        console.log(res);
+        setName(res.name);
+        setPrice(res.price);
+        setPrice(res.soldQty);
+      })
+      .catch(() => {});
+  }, []);
+  const updateProductClick = () => {
+    productService
+      .updateProduct(id, { name, price, soldQty })
+      .then(() => {
         props.history.push("/products");
       })
       .catch((err) => {
@@ -21,7 +31,7 @@ const AddProduct = (props) => {
   return (
     <div>
       <div>
-        <h1>Add New Product</h1>
+        <h1>Update New Product</h1>
       </div>
       <div>
         <Grid container spacing={3}>
@@ -48,19 +58,21 @@ const AddProduct = (props) => {
               label="soldQty"
               fullWidth
               value={soldQty}
-              type="soldQty"
+              type="number"
               onChange={(event) => {
                 setsoldQty(event.target.value);
               }}
             />
+
             <Button
               variant="contained"
-              color="primary"
+              color="secondary"
               style={{ marginTop: "5px" }}
-              onClick={addProductClick}
+              onClick={updateProductClick}
             >
-              Add Product
+              Update Product
             </Button>
+            <br />
           </Grid>
           <Grid item xs={4}></Grid>
         </Grid>
@@ -69,4 +81,4 @@ const AddProduct = (props) => {
   );
 };
 
-export default AddProduct;
+export default Updateproduct;

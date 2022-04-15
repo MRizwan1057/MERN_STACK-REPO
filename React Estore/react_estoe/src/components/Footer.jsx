@@ -29,7 +29,7 @@ const Footer = (props) => {
     <div>
       <AppBar className={classes.footer}>
         <Toolbar>
-          <Typography variant="p" className={classes.footeritem}>
+          <Typography variant="h6" className={classes.footeritem}>
             All Right Reserved
           </Typography>
 
