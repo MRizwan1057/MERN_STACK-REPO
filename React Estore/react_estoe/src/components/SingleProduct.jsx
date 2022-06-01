@@ -48,10 +48,10 @@ const SingleProduct = (props) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => {
-            console.log(`veiwed${product._id}`);
-            props.history.push("/detailedProduct" + product._id);
-          }}
+          // onClick={() => {
+          //   console.log(`veiwed${product._id}`);
+          //   props.history.push("/detailedProduct" + product._id);
+          // }}
         >
           View Product
         </Button>

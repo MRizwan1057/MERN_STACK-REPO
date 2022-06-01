@@ -46,7 +46,22 @@ const Products = (props) => {
   }, [page, perPage]);
   return (
     <div>
-      {/* className={classes.backdrop} */}
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}
+      >
+        {products.length == 0 ? (
+          <div>No products</div>
+        ) : (
+          products.map((product, index) => {
+            return <SingleProduct key={index} product={product} />;
+          })
+        )}
+      </Grid>
+
       <Backdrop open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
@@ -66,22 +81,6 @@ const Products = (props) => {
         <MenuItem value={5}>Five</MenuItem>
         <MenuItem value={10}>Ten</MenuItem>
       </Select>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        spacing={1}
-      >
-        {products.length == 0 ? (
-          <div>No products</div>
-        ) : (
-          products.map((product, index) => {
-            return <SingleProduct key={index} product={product} />;
-          })
-        )}
-      </Grid>
-      )
     </div>
   );
 };

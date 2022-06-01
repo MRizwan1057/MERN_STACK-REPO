@@ -16,10 +16,11 @@ const MenuItem = (props) => {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Link to="/" className={classes.menuItem}>
+          {/* <Link to="/" className={classes.menuItem}>
             <Typography variant="h6">Home</Typography>
-          </Link>
-          <Link to="/products" className={classes.menuItem}>
+          </Link> */}
+
+          <Link to="/" className={classes.menuItem}>
             <Typography variant="h6">Products</Typography>
           </Link>
 
@@ -41,7 +42,7 @@ const MenuItem = (props) => {
                   window.location.reload();
                 }}
               >
-                <Typography variant="h6">Signout</Typography>
+                <Typography variant="h6">Log out</Typography>
               </Button>
             </>
           )}

@@ -26,15 +26,16 @@ const Login = (props) => {
   return (
     <div>
       <Grid container>
-        <Grid item xs={4}></Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6}>
           <form
             action=""
             style={{
               textAlign: "center",
               backgroundColor: "lightblue",
-              borderRadius: "33px",
-              margin: "50px",
+              borderRadius: "22px",
+              margin: "3%",
+              width: "100%",
             }}
           >
             <br />
@@ -75,7 +76,7 @@ const Login = (props) => {
             <br /> <br />
           </form>
         </Grid>
-        <Grid item xs={4}></Grid>
+        <Grid item xs={3}></Grid>
       </Grid>
     </div>
   );
